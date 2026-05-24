@@ -1,4 +1,4 @@
-# Verilog Traffic Controller
+# Verilog Modified Traffic Controller
 
 A 6-state finite state machine (FSM) designed in Verilog to control a T-junction traffic intersection safely and efficiently.
 
