@@ -1,11 +1,42 @@
-# Verilog Modified Traffic Controller
+## Traffic Light Controller (6-State FSM)
 
-A 6-state finite state machine (FSM) designed in Verilog to control a T-junction traffic intersection safely and efficiently.
+A 6-state finite state machine designed in Verilog to control a T-junction traffic intersection.
 
-## Junction Design
-This project models the following intersection layout:
+### 1. Junction Layout
+The intersection manages four distinct traffic paths:
+* **M1:** Main Flow (Top lane, straight)
+* **MT:** Main Turn (Top lane, turning right)
+* **M2:** Main Bottom (Bottom lane, straight)
+* **S:** Side Road (Right turn onto main)
 
-![Junction Diagram](junction_design.jpeg)
+### 2. State Transition Table
+The FSM cycles through 6 distinct cases based on the timing triggers for main flows, turns, and side roads. 
 
-## Simulation & Output
-The design was compiled and simulated using Icarus Verilog (`iverilog`). You can view the full timing breakdown in the `simulation_log.txt` file, which tracks the state changes of the main roads (`M1`, `M2`), main turn (`MT`), and side road (`S`) against the reset (`rst`) and time steps.
+| State | Main 1 (M1) | Main Turn (MT) | Main 2 (M2) | Side (S) | Next State Trigger |
+| :--- | :---: | :---: | :---: | :---: | :--- |
+| **S1 (Case 1)** | **G** | R | **G** | R | `TMG` (Top Main Green) |
+| **S2 (Case 2)** | **G** | R | Y | R | `TY1` (Transition Yellow 1) |
+| **S3 (Case 3)** | **G** | **G** | R | R | `TTG` (Top Turn Green) |
+| **S4 (Case 4)** | Y | Y | R | R | `TY2` (Transition Yellow 2) |
+| **S5 (Case 5)** | R | R | R | **G** | `TSG` (Top Side Green) |
+| **S6 (Case 6)** | R | R | R | Y | `TY3` (Transition Yellow 3) |
+
+*(Note: G = Green, Y = Yellow, R = Red)*
+
+### 3. FSM State Diagram
+The following diagram illustrates the state transitions and hold conditions (denoted by `~` for the active-low/hold state).
+
+```mermaid
+stateDiagram-v2
+    S1 --> S1 : ~TMG
+    S1 --> S2 : TMG
+    S2 --> S2 : ~TY1
+    S2 --> S3 : TY1
+    S3 --> S3 : ~TTG
+    S3 --> S4 : TTG
+    S4 --> S4 : ~TY2
+    S4 --> S5 : TY2
+    S5 --> S5 : ~TSG
+    S5 --> S6 : TSG
+    S6 --> S6 : ~TY3
+    S6 --> S1 : TY3
