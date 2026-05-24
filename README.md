@@ -2,6 +2,12 @@
 
 A 6-state finite state machine designed in Verilog to control a T-junction traffic intersection.
 
+### Design Specifications
+* **Architecture:** 6-State Moore Finite State Machine (FSM).
+* **State Encoding:** 3-bit sequential binary encoding to map states $S1$ through $S6$.
+* **Reset Condition:** Asynchronous, active-high reset (`rst`). Forces the intersection into a safe default state ($S1$: Main Flow Green, all others Red) upon system initialization.
+* **Clocking:** Fully synchronous state transitions triggered on the positive edge of the system clock.
+
 ### 1. Junction Layout
 <img width="627" height="340" alt="image" src="https://github.com/user-attachments/assets/2aba1607-3e38-494e-9a92-66955312b3a9" />
 
