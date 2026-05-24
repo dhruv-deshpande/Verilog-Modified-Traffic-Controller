@@ -3,6 +3,8 @@
 A 6-state finite state machine designed in Verilog to control a T-junction traffic intersection.
 
 ### 1. Junction Layout
+<img width="724" height="1024" alt="image" src="https://github.com/user-attachments/assets/6007c315-0551-48c0-84bb-4c940fbb685f" />
+
 The intersection manages four distinct traffic paths:
 * **M1:** Main Flow (Top lane, straight)
 * **MT:** Main Turn (Top lane, turning right)
