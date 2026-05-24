@@ -3,7 +3,7 @@
 A 6-state finite state machine designed in Verilog to control a T-junction traffic intersection.
 
 ### 1. Junction Layout
-<img width="727" height="340" alt="image" src="https://github.com/user-attachments/assets/2aba1607-3e38-494e-9a92-66955312b3a9" />
+<img width="627" height="340" alt="image" src="https://github.com/user-attachments/assets/2aba1607-3e38-494e-9a92-66955312b3a9" />
 
 The intersection manages four distinct traffic paths:
 * **M1:** Main Flow (Top lane, straight)
@@ -26,9 +26,6 @@ The FSM cycles through 6 distinct cases based on the timing triggers for main fl
 *(Note: G = Green, Y = Yellow, R = Red)*
 
 ### 3. FSM State Diagram
-The following diagram illustrates the state transitions and hold conditions (denoted by `~` for the active-low/hold state).
+The following diagram illustrates the state transitions and hold conditions (denoted by `-` for the active-low/hold state).
 
-<img width="859" height="667" alt="image" src="https://github.com/user-attachments/assets/dc5ca2c9-8ce3-48c5-8bc0-09e9747b047f" />
-
-    S6 --> S6 : ~TY3
-    S6 --> S1 : TY3
+<img width="659" height="467" alt="image" src="https://github.com/user-attachments/assets/dc5ca2c9-8ce3-48c5-8bc0-09e9747b047f" />
